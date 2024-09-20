@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: file:///E:\blog\wz\sh\preview/sitemap.xml
