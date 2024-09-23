@@ -10,6 +10,20 @@
     },
     "items": [
         {
+            "id": "https://wswldcs.github.io/zhe-shi-wo-de-ge-ren-bo-kechu-yu-chu-bu-wan-cheng-jie-duan/",
+            "url": "https://wswldcs.github.io/zhe-shi-wo-de-ge-ren-bo-kechu-yu-chu-bu-wan-cheng-jie-duan/",
+            "title": "这是我的个人博客，处于初步完成阶段",
+            "summary": "wswldcs.github.io可访问",
+            "content_html": "<p>wswldcs.github.io可访问</p>",
+            "author": {
+                "name": "wswldcs"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-09-23T11:16:04+08:00",
+            "date_modified": "2024-09-23T11:16:04+08:00"
+        },
+        {
             "id": "https://wswldcs.github.io/ni-gan-ma-ha-ha-ai-yo/",
             "url": "https://wswldcs.github.io/ni-gan-ma-ha-ha-ai-yo/",
             "title": "你干嘛哈哈哎哟",
