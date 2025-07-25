@@ -16,5 +16,5 @@ Disallow: /stars/
 Disallow: /link/
 
 
-Sitemap: https://blog.juanertu.com/sitemap.xml
-Sitemap: https://blog.juanertu.com/baidusitemap.xml
+Sitemap: http://blog.mhy.loc.cc/sitemap.xml
+Sitemap: http://blog.mhy.loc.cc/baidusitemap.xml
