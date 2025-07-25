@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>API接口开发日记 | 你真是一个美好的人类</title><meta name="keywords" content="Node,API,接口开发"><meta name="author" content="ConstOwn"><meta name="copyright" content="ConstOwn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用express开发一个简单的接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API接口开发日记">
+<meta property="og:url" content="https://blog.juanertu.com/archives/f09f3fc0.html">
+<meta property="og:site_name" content="你真是一个美好的人类">
+<meta property="og:description" content="使用express开发一个简单的接口">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718185057.png">
+<meta property="article:published_time" content="2020-05-05T16:02:11.000Z">
+<meta property="article:modified_time" content="2020-05-05T16:02:11.000Z">
+<meta property="article:author" content="ConstOwn">
+<meta property="article:tag" content="Node">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="接口开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718185057.png"><link rel="shortcut icon" href="/images/favicon-32x32.png"><link rel="canonical" href="https://blog.juanertu.com/archives/f09f3fc0"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8eb1533491dd67c83f8cff0c82eb29c6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=KF2A9kM-tDfaKXgg0ZdpvUpi45b1qlFmyXR6xCyV79U"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'KF2A9kM-tDfaKXgg0ZdpvUpi45b1qlFmyXR6xCyV79U');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"这篇文章最后更新于","messageNext":"天前，文章内容可能已经过时，请优先查看最新文章！"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: ConstOwn","link":"链接: ","source":"来源: 你真是一个美好的人类","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'API接口开发日记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-05-05 16:02:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="google-site-verification" content="KF2A9kM-tDfaKXgg0ZdpvUpi45b1qlFmyXR6xCyV79U" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/constown/HexoCustomFile@0.0.4/dist/css/custom.min.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">82</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-th"></i><span> 找文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-link"></i><span> 找链接</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-user-plus"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fas fa-star"></i><span> 收藏网址</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-heart"></i><span> 关注我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717233539.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">你真是一个美好的人类</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-th"></i><span> 找文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-link"></i><span> 找链接</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-user-plus"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fas fa-star"></i><span> 收藏网址</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-heart"></i><span> 关注我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">API接口开发日记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-05T16:02:11.000Z" title="发表于 2020-05-05 16:02:11">2020-05-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-05-05T16:02:11.000Z" title="更新于 2020-05-05 16:02:11">2020-05-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Node/">Node</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Node/Express/">Express</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>之前做了一个商城的 demo，当时是用的别人接口，用的人比较多，经常就挂了，我就寻思自己开发一下这个接口自用，</p>
+<p>主要技术栈很简单，就是 node+express 就行了，当然你还需要会一点 mysql！</p>
+<h2 id="爬取数据"><a href="#爬取数据" class="headerlink" title="爬取数据"></a>爬取数据</h2><p>爬取原接口数据：<a href="/archives/1567847a.html">Node 爬取数据到数据库练习</a></p>
+<p>代码都在这里了。我之前就爬取下来了。放进数据库。</p>
+<h2 id="编写接口代码"><a href="#编写接口代码" class="headerlink" title="编写接口代码"></a>编写接口代码</h2><p>这个也没什么好说的，就是运用动态路由,示例代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> router = express.<span class="title class_">Router</span>()</span><br><span class="line"><span class="keyword">let</span> sqlQuery = <span class="built_in">require</span>(<span class="string">&#x27;./mysql&#x27;</span>)</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> iid = req.<span class="property">query</span>.<span class="property">iid</span></span><br><span class="line">  <span class="keyword">let</span> sqlStr = <span class="string">`select data from detail where iid = ?`</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> <span class="title function_">sqlQuery</span>(sqlStr, iid)</span><br><span class="line">  result = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(result[<span class="number">0</span>].<span class="property">data</span>)</span><br><span class="line">  res.<span class="title function_">send</span>(result)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = router</span><br></pre></td></tr></table></figure>
+
+<p>这里我封装了一下数据库查询语句，封装的 <code>sqlquery</code> 代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mysql = <span class="built_in">require</span>(<span class="string">&#x27;mysql&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sqlOptions = &#123;</span><br><span class="line">  <span class="attr">host</span>: <span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">  <span class="attr">port</span>: <span class="string">&#x27;3306&#x27;</span>,</span><br><span class="line">  <span class="attr">user</span>: <span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&#x27;123456&#x27;</span>,</span><br><span class="line">  <span class="attr">database</span>: <span class="string">&#x27;mall&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建连接</span></span><br><span class="line"><span class="keyword">let</span> con = mysql.<span class="title function_">createConnection</span>(sqlOptions)</span><br><span class="line">con.<span class="title function_">connect</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;错误信息：&#x27;</span> + err)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;数据库连接成功&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sqlQuery</span>(<span class="params">strSql, arr</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    con.<span class="title function_">query</span>(strSql, arr, <span class="function">(<span class="params">err, results</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="title function_">reject</span>(<span class="string">&#x27;错误信息：&#x27;</span> + err)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_">resolve</span>(results)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = sqlQuery</span><br></pre></td></tr></table></figure>
+
+<h2 id="在云服务器上部署-node-项目"><a href="#在云服务器上部署-node-项目" class="headerlink" title="在云服务器上部署 node 项目"></a>在云服务器上部署 node 项目</h2><p>我使用的是阿里云的 ECS 云服务器+宝塔面板。</p>
+<p>首先将所有文件上传到服务器中：我上传的位置：/www/wwwroot/mallAPI</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200505160150.png" alt="image-20200505160142160"></p>
+<p>然后我们在软件商店安装一个 pm2：</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200505160239.png" alt="image-20200505160238425"></p>
+<p>打开它，分别填入根目录和启动文件，添加项目，并启动。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200505160351.png" alt="image-20200505160349822"></p>
+<p>然后点击映射，填入你的域名，添加反向代理：</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200505160524.png" alt="image-20200505160523376"></p>
+<p>这样就部署好了。</p>
+<h2 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h2><h3 id="从数据库中取出-json-数据"><a href="#从数据库中取出-json-数据" class="headerlink" title="从数据库中取出 json 数据"></a>从数据库中取出 json 数据</h3><p>在爬取数据的时候，我直接把 JSON 数据放进了 data 字段中，在取出的时候，我们实际得到的是这样一个对象：</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200505160816.png" alt="47e572d6e2ca9933e1de7ea75d72039"></p>
+<p>所以我们需要对这个数据简单处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sqlStr = <span class="string">&#x27;select data from home_multidata&#x27;</span></span><br><span class="line"><span class="keyword">let</span> result = <span class="keyword">await</span> <span class="title function_">sqlQuery</span>(sqlStr)</span><br><span class="line">result = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(result[<span class="number">0</span>].<span class="property">data</span>)</span><br><span class="line">res.<span class="title function_">send</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p>如果不处理，我们是得不到想要的 JSON 数据的，直接给你返回的是这样一个鬼东西：</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200505160959.png"></p>
+<h3 id="node-项目需要安装依赖"><a href="#node-项目需要安装依赖" class="headerlink" title="node 项目需要安装依赖"></a>node 项目需要安装依赖</h3><p>明明上传了项目，但是在 pm2 管理器部署，总是不成功，可能是依赖问题。我上传的时候没有上传 <code>node-modules</code> 文件夹，因为这个文件实在是又臭又长。</p>
+<p>我们直接使用 Xshell 或者宝塔终端或者其他什么都可以，连接到服务器，切换到项目目录，安装依赖就好，这里依然还是推荐淘宝镜像：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>然后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<h2 id="开发完成"><a href="#开发完成" class="headerlink" title="开发完成"></a>开发完成</h2><p>到这里我们的 API 接口就开发完成了。看看效果：</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200505161722.png" alt="image-20200505161721715"></p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200505161701.png" alt="image-20200505161700833"></p>
+<h3 id="代码地址"><a href="#代码地址" class="headerlink" title="代码地址"></a>代码地址</h3><p>api 代码地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/constown/mallAPI">mallAPI</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined" rel="external nofollow noreferrer">ConstOwn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.juanertu.com/archives/f09f3fc0.html">https://blog.juanertu.com/archives/f09f3fc0.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.juanertu.com" target="_blank">你真是一个美好的人类</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Node/">Node</a><a class="post-meta__tags" href="/tags/API/">API</a><a class="post-meta__tags" href="/tags/%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91/">接口开发</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718185057.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/archives/f06684a1.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718184146.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">NexT版本更新V8.0记录</div></div></a></div><div class="next-post pull-right"><a href="/archives/b1e33f9d.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718184146.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">sitemeta渐变背景实现</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/archives/44b2b83c.html" title="Node学习总结笔记"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718184621.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-13</div><div class="title">Node学习总结笔记</div></div></a></div><div><a href="/archives/91fd1eed.html" title="mac OS 配置前端开发环境"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20210615211906.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">mac OS 配置前端开发环境</div></div></a></div><div><a href="/archives/aef974df.html" title="npm使用奇淫技巧"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718184541.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-07</div><div class="title">npm使用奇淫技巧</div></div></a></div><div><a href="/archives/4faef664.html" title="JWT 鉴权在 ThinkJS 中的实践"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200830221722.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-30</div><div class="title">JWT 鉴权在 ThinkJS 中的实践</div></div></a></div><div><a href="/archives/482180fa.html" title="ThinkJS允许跨域处理"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200830222115.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-30</div><div class="title">ThinkJS允许跨域处理</div></div></a></div><div><a href="/archives/155e47b.html" title="使用 svg-captcha 插件在 ThinkJS 中实现随机验证码功能"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200830221642.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-30</div><div class="title">使用 svg-captcha 插件在 ThinkJS 中实现随机验证码功能</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ConstOwn</div><div class="author-info__description">能和你一起成长，我荣幸之至。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">82</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/constown"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/constown" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=mvn19Onu9e302vz14vf78-a0_fX3" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://juanertu.com" rel="external nofollow noreferrer" target="_blank" title="我的首页"><i class="fas fa-laptop-code"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=912300601&amp;site=qq&amp;menu=yes" rel="external nofollow noreferrer" target="_blank" title="发送QQ消息"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">暂时不接受友链申请了，如果需要联系我，请不要在博客留言，很少看到，请直接通过上方QQ给我发送临时消息！。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%AC%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-text">爬取数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%8E%A5%E5%8F%A3%E4%BB%A3%E7%A0%81"><span class="toc-text">编写接口代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%83%A8%E7%BD%B2-node-%E9%A1%B9%E7%9B%AE"><span class="toc-text">在云服务器上部署 node 项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95"><span class="toc-text">踩坑记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E5%8F%96%E5%87%BA-json-%E6%95%B0%E6%8D%AE"><span class="toc-text">从数据库中取出 json 数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node-%E9%A1%B9%E7%9B%AE%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">node 项目需要安装依赖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%AE%8C%E6%88%90"><span class="toc-text">开发完成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="toc-text">代码地址</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/archives/91fd1eed.html" title="mac OS 配置前端开发环境"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20210615211906.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mac OS 配置前端开发环境"/></a><div class="content"><a class="title" href="/archives/91fd1eed.html" title="mac OS 配置前端开发环境">mac OS 配置前端开发环境</a><time datetime="2023-06-15T19:02:11.000Z" title="发表于 2023-06-15 19:02:11">2023-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/992bac21.html" title="使用GitHub Actions 实现自动化部署和部署到服务器"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/202202091905708.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用GitHub Actions 实现自动化部署和部署到服务器"/></a><div class="content"><a class="title" href="/archives/992bac21.html" title="使用GitHub Actions 实现自动化部署和部署到服务器">使用GitHub Actions 实现自动化部署和部署到服务器</a><time datetime="2022-02-10T13:02:13.000Z" title="发表于 2022-02-10 13:02:13">2022-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/9ac5350.html" title="img标签访问图片返回403 forbidden的解决方法"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20210720104313.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="img标签访问图片返回403 forbidden的解决方法"/></a><div class="content"><a class="title" href="/archives/9ac5350.html" title="img标签访问图片返回403 forbidden的解决方法">img标签访问图片返回403 forbidden的解决方法</a><time datetime="2021-07-20T10:36:33.000Z" title="发表于 2021-07-20 10:36:33">2021-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/558885cd.html" title="Vue基于html2canvas实现HTML页面生成为图片并下载的功能及清晰度优化"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20201113115021.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue基于html2canvas实现HTML页面生成为图片并下载的功能及清晰度优化"/></a><div class="content"><a class="title" href="/archives/558885cd.html" title="Vue基于html2canvas实现HTML页面生成为图片并下载的功能及清晰度优化">Vue基于html2canvas实现HTML页面生成为图片并下载的功能及清晰度优化</a><time datetime="2020-11-13T11:36:33.000Z" title="发表于 2020-11-13 11:36:33">2020-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/59df034f.html" title="那些你总是要用却又死活记不住的css属性"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20201112094634.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="那些你总是要用却又死活记不住的css属性"/></a><div class="content"><a class="title" href="/archives/59df034f.html" title="那些你总是要用却又死活记不住的css属性">那些你总是要用却又死活记不住的css属性</a><time datetime="2020-11-12T09:36:33.000Z" title="发表于 2020-11-12 09:36:33">2020-11-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023 By ConstOwn</div><div class="footer_custom_text"><span style="color:#999" onclick="window.open('https://beian.miit.gov.cn/#/Integrated/index/')"><a class="footer-a"> 渝ICP备19004608号</a></span> <br /> <span style="color:#999" onclick="window.open('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50023502000331')"><a class="footer-a"><img class="upy" align="absmiddle" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200831161110.png">渝公网安备50023502000331号</a></span> <br /> <a class="footer-a" onclick="window.open('https:\/\/www.upyun.com/?utm_source=lianmeng&utm_medium=referral')">本网站由 <img class="upy" align="absmiddle" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/upy.png"> 提供CDN加速/云储存服务</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

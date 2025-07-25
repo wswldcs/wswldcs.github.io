@@ -1,0 +1,493 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JavaScript数据结构和算法：数组 | 你真是一个美好的人类</title><meta name="keywords" content="JavaScript,数据结构,算法,数组"><meta name="author" content="ConstOwn"><meta name="copyright" content="ConstOwn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="几乎所有的编程语言都原生支持数组类型，因为数组是最简单的内存数据结构，数组通常情况下用于存储一系列同一种数据类型的值，但在JavaScript里，也可以在数组中保存不同类型的值。这里我们将学习一下在JavaScript中的数组！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript数据结构和算法：数组">
+<meta property="og:url" content="https://blog.juanertu.com/archives/838e5b66.html">
+<meta property="og:site_name" content="你真是一个美好的人类">
+<meta property="og:description" content="几乎所有的编程语言都原生支持数组类型，因为数组是最简单的内存数据结构，数组通常情况下用于存储一系列同一种数据类型的值，但在JavaScript里，也可以在数组中保存不同类型的值。这里我们将学习一下在JavaScript中的数组！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717232609.jpg">
+<meta property="article:published_time" content="2020-06-25T12:22:30.000Z">
+<meta property="article:modified_time" content="2020-06-25T12:22:30.000Z">
+<meta property="article:author" content="ConstOwn">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="数组">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717232609.jpg"><link rel="shortcut icon" href="/images/favicon-32x32.png"><link rel="canonical" href="https://blog.juanertu.com/archives/838e5b66"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8eb1533491dd67c83f8cff0c82eb29c6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=KF2A9kM-tDfaKXgg0ZdpvUpi45b1qlFmyXR6xCyV79U"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'KF2A9kM-tDfaKXgg0ZdpvUpi45b1qlFmyXR6xCyV79U');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"这篇文章最后更新于","messageNext":"天前，文章内容可能已经过时，请优先查看最新文章！"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: ConstOwn","link":"链接: ","source":"来源: 你真是一个美好的人类","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaScript数据结构和算法：数组',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-06-25 12:22:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="google-site-verification" content="KF2A9kM-tDfaKXgg0ZdpvUpi45b1qlFmyXR6xCyV79U" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/constown/HexoCustomFile@0.0.4/dist/css/custom.min.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">82</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-th"></i><span> 找文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-link"></i><span> 找链接</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-user-plus"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fas fa-star"></i><span> 收藏网址</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-heart"></i><span> 关注我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717233539.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">你真是一个美好的人类</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-th"></i><span> 找文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-link"></i><span> 找链接</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-user-plus"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fas fa-star"></i><span> 收藏网址</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-heart"></i><span> 关注我</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JavaScript数据结构和算法：数组</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-06-25T12:22:30.000Z" title="发表于 2020-06-25 12:22:30">2020-06-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-06-25T12:22:30.000Z" title="更新于 2020-06-25 12:22:30">2020-06-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">数据结构和算法</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="数组的基本使用"><a href="#数组的基本使用" class="headerlink" title="数组的基本使用"></a>数组的基本使用</h3><h4 id="为什么使用数组"><a href="#为什么使用数组" class="headerlink" title="为什么使用数组?"></a>为什么使用数组?</h4><ul>
+<li><p>假如有这样一个需求：保存自己多个朋友的名字。可以这么做：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存班级中所有学生的名字</span></span><br><span class="line"><span class="keyword">var</span> name1 = <span class="string">&#x27;Tom&#x27;</span></span><br><span class="line"><span class="keyword">var</span> name2 = <span class="string">&#x27;Lily&#x27;</span></span><br><span class="line"><span class="keyword">var</span> name3 = <span class="string">&#x27;Lucy&#x27;</span></span><br><span class="line"><span class="keyword">var</span> name4 = <span class="string">&#x27;Lilei&#x27;</span></span><br><span class="line"><span class="keyword">var</span> name5 = <span class="string">&#x27;Coderwhy&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这不是一个好的解决方案</p>
+<ul>
+<li>因为假如班级有 100 个学生, 那么我们就需要有 100 个变量.</li>
+<li>100 个变量的是非常不方便管理的, 而且当我们需要找到某一个学生时, 从 100 个变量中去搜索也是一个问题.</li>
+</ul>
+</li>
+<li><p>很明显, 这种情况下, 我们通常会使用数组来解决:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用数组来保存学生名字</span></span><br><span class="line"><span class="keyword">var</span> names = [<span class="string">&#x27;Tom&#x27;</span>, <span class="string">&#x27;Lily&#x27;</span>, <span class="string">&#x27;Lucy&#x27;</span>, <span class="string">&#x27;Lilei&#x27;</span>, <span class="string">&#x27;Coderwhy&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="创建和初始化数组"><a href="#创建和初始化数组" class="headerlink" title="创建和初始化数组"></a>创建和初始化数组</h4><ul>
+<li><p>用 JavaScript 声明、创建和初始化数组很简单，就像下面这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建和初始化数组</span></span><br><span class="line"><span class="keyword">var</span> daysOfWeek = <span class="keyword">new</span> <span class="title class_">Array</span>()</span><br><span class="line"><span class="keyword">var</span> daysOfWeek = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">7</span>)</span><br><span class="line"><span class="keyword">var</span> daysOfWeek = <span class="keyword">new</span> <span class="title class_">Array</span>(</span><br><span class="line">  <span class="string">&#x27;Sunday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Monday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Tuesday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Wednesday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Thursday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Friday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Saturday&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码解析:</p>
+<ul>
+<li>使用<code>new</code>关键字，就能简单地声明并初始化一个数组</li>
+<li>用这种方式，还可以创建一个指定长度的数组.</li>
+<li>另外，也可以直接将数组元素作为参数传递给它的构造器</li>
+<li>用<code>new</code>创建数组并不是最好的方式。如果你想在 JavaScript 中创建一个数组，只用中括号（<code>[]</code>）的形式就行了</li>
+</ul>
+</li>
+<li><p>使用中括号（<code>[]</code>）创建数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> daysOfWeek = [</span><br><span class="line">  <span class="string">&#x27;Sunday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Monday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Tuesday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Wednesday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Thursday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Friday&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Saturday&#x27;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="数组长度和遍历数组"><a href="#数组长度和遍历数组" class="headerlink" title="数组长度和遍历数组"></a>数组长度和遍历数组</h4><ul>
+<li><p>如果我们希望获取数组的长度, 有一个 length 属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取数组的长度</span></span><br><span class="line"><span class="title function_">alert</span>(daysOfWeek.<span class="property">length</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>也可以通过下标值来遍历数组:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通for方式遍历数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; daysOfWeek.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(daysOfWeek[i])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过foreach遍历数组</span></span><br><span class="line">daysOfWeek.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(value)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们来做一个练习:</p>
+<ul>
+<li>求菲波那切数列的前 20 个数字, 并且放在数组中.</li>
+<li>菲波那切数列数列第一个数字是 1, 第二个数字也是 1, 第三项是前两项的和</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 求菲波那切数列的前20个数字</span></span><br><span class="line"><span class="keyword">var</span> fibonacci = []</span><br><span class="line">fibonacci[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">fibonacci[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">2</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">  fibonacci[i] = fibonacci[i - <span class="number">1</span>] + fibonacci[i - <span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(fibonacci)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="数组的常见操作"><a href="#数组的常见操作" class="headerlink" title="数组的常见操作"></a>数组的常见操作</h3><blockquote>
+<p>数组中常见的操作有: 添加元素、删除元素、修改元素、获取元素.</p>
+</blockquote>
+<h4 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h4><ul>
+<li><p>JavaScript 中, 进行我们上述的操作都比较简单: 因为语言本身都已经封装好了这些特定.</p>
+</li>
+<li><p>假如我们有一个数组: numbers, 初始化 0~9</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化一个数组</span></span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加一个元素到数组的最后位置:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加一个元素到数组的最后位置</span></span><br><span class="line"><span class="comment">// 方式一:</span></span><br><span class="line">numbers[numbers.<span class="property">length</span>] = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二:</span></span><br><span class="line">numbers.<span class="title function_">push</span>(<span class="number">11</span>)</span><br><span class="line">numbers.<span class="title function_">push</span>(<span class="number">12</span>, <span class="number">13</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(numbers)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在数组首位插入一个元素:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在数组首位插入一个元素</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = numbers.<span class="property">length</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">  numbers[i] = numbers[i - <span class="number">1</span>]</span><br><span class="line">&#125;</span><br><span class="line">numbers[<span class="number">0</span>] = -<span class="number">1</span></span><br><span class="line"><span class="title function_">alert</span>(numbers) <span class="comment">// -1,0,1,2,3,4,5,6,7,8,9,10,11,12,13</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上面代码实现的原理是怎样的呢?</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200707211141.png" alt="image-20200707211139946"></p>
+<ul>
+<li><p>考虑上面代码实现的性能怎么呢?</p>
+<ul>
+<li>性能并不算非常高</li>
+<li>这也是数组和链表(后面我们会学习到)相对比的一个劣势: 在中间位置插入元素的效率比链表低.</li>
+</ul>
+</li>
+<li><p>当然, 我们在数组首位插入数据可以直接使用 unshift 方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过unshift在首位插入数据</span></span><br><span class="line">numbers.<span class="title function_">unshift</span>(-<span class="number">2</span>)</span><br><span class="line">numbers.<span class="title function_">unshift</span>(-<span class="number">4</span>, -<span class="number">3</span>)</span><br><span class="line"><span class="title function_">alert</span>(numbers) <span class="comment">// -4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h4><ul>
+<li><p>如果希望删除数组最后的元素, 可以使用 pop()方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除最后的元素</span></span><br><span class="line">numbers.<span class="title function_">pop</span>()</span><br><span class="line"><span class="title function_">alert</span>(numbers) <span class="comment">// -4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果我们希望移除的首位元素, 自己实现代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除首位的元素</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; numbers.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  numbers[i] = numbers[i + <span class="number">1</span>]</span><br><span class="line">&#125;</span><br><span class="line">numbers.<span class="title function_">pop</span>()</span><br><span class="line"><span class="title function_">alert</span>(numbers)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当然, 我们可以直接使用 shift 方法来实现:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers.<span class="title function_">shift</span>()</span><br><span class="line"><span class="title function_">alert</span>(numbers)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="任意位置"><a href="#任意位置" class="headerlink" title="任意位置"></a>任意位置</h4><ul>
+<li><p>任意位置?</p>
+<ul>
+<li>前面我们学习的主要是在数组的开头和结尾处添加和删除数据.</li>
+<li>那如果我们希望在数组的中间位置进行一些操作应该怎么办呢?</li>
+</ul>
+</li>
+<li><p>一方面, 我们可以自己封装这样的函数, 但 JS 已经给我们提供了一个 splice 方法</p>
+</li>
+<li><p>通过 splice 删除数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除指定位置的几个元素</span></span><br><span class="line">numbers.<span class="title function_">splice</span>(<span class="number">5</span>, <span class="number">3</span>)</span><br><span class="line"><span class="title function_">alert</span>(numbers) <span class="comment">// -4,-3,-2,-1,0,4,5,6,7,8,9,10,11,12,13</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码解析:</p>
+<ul>
+<li>上面的代码会删除索引为 5, 6, 7 位置的元素.</li>
+<li>第一个参数表示索引起始的位置为 5(其实是第 6 个元素, 因为索引从 0 开始的), 删除 3 个元素.</li>
+</ul>
+</li>
+<li><p>如果我们希望使用 splice 来插入数据呢?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入指定位置元素</span></span><br><span class="line">numbers.<span class="title function_">splice</span>(<span class="number">5</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line"><span class="title function_">alert</span>(numbers) <span class="comment">// -4,-3,-2,-1,0,3,2,1,4,5,6,7,8,9,10,11,12,13</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码解析:</p>
+<ul>
+<li>上面的代码会从索引为 5 的位置开始插入数据. 其他数据依次向后位移.</li>
+<li>第一个参数依然是索引值为 5(第六个位置)</li>
+<li>第二个参数为 0 时表示不是删除数据, 而是插入数据.</li>
+<li>后面紧跟的是在这个位置要插入的数据, 可以是其他类型, 比如”a”, “b”, “c”.</li>
+</ul>
+</li>
+<li><p>如果我们希望使用 splice 来修改数据呢?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改指定位置的元素</span></span><br><span class="line">numbers.<span class="title function_">splice</span>(<span class="number">5</span>, <span class="number">3</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>)</span><br><span class="line"><span class="title function_">alert</span>(numbers) <span class="comment">// -4,-3,-2,-1,0,a,b,c,4,5,6,7,8,9,10,11,12,13</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码解析:</p>
+<ul>
+<li>上面的代码会从索引 5 的位置开始修改数据, 修改多少个呢? 第二个参数来决定的.</li>
+<li>第一个参数依然是索引的位置为 5(第六个位置)</li>
+<li>第二个参数是要将数组中多少个元素给替换掉, 我们这里是 3 个(也可以使用 3 个元素来替换 2 个, 可以自己尝试一下)</li>
+<li>后面跟着的就是要替换的元素.</li>
+</ul>
+</li>
+</ul>
+<h3 id="数组的其他操作"><a href="#数组的其他操作" class="headerlink" title="数组的其他操作"></a>数组的其他操作</h3><blockquote>
+<p>上面学习的是对数组的一些基本操作.</p>
+<p>JavaScript 中添加了很多方便操作数据的方法, 我们一些来简单回顾一下.</p>
+</blockquote>
+<h4 id="常见方法"><a href="#常见方法" class="headerlink" title="常见方法"></a>常见方法</h4><ul>
+<li><p>我们先对常见的方法简单来看一下</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>方法描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>concat</code></td>
+<td>连接 2 个或更多数组，并返回结果</td>
+</tr>
+<tr>
+<td><code>every</code></td>
+<td>对数组中的每一项运行给定函数，如果该函数对每一项都返回 <code>true</code>，则返回<code>true</code>, 否则返回<code>false</code></td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td>对数组中的每一项运行给定函数，返回该函数会返回 <code>true</code>的项组成的数组</td>
+</tr>
+<tr>
+<td><code>forEach</code></td>
+<td>对数组中的每一项运行给定函数。这个方法没有返回值</td>
+</tr>
+<tr>
+<td><code>join</code></td>
+<td>将所有的数组元素连接成一个字符串</td>
+</tr>
+<tr>
+<td><code>indexOf</code></td>
+<td>返回第一个与给定参数相等的数组元素的索引，没有找到则返回-1</td>
+</tr>
+<tr>
+<td><code>lastIndexOf</code></td>
+<td>返回在数组中搜索到的与给定参数相等的元素的索引里最大的值</td>
+</tr>
+<tr>
+<td><code>map</code></td>
+<td>对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组</td>
+</tr>
+<tr>
+<td><code>reverse</code></td>
+<td>颠倒数组中元素的顺序，原先第一个元素现在变成最后一个，同样原先的最后一个元素变成了现在的第一个</td>
+</tr>
+<tr>
+<td><code>slice</code></td>
+<td>传入索引值，将数组里对应索引范围内的元素作为新数组返回</td>
+</tr>
+<tr>
+<td><code>some</code></td>
+<td>对数组中的每一项运行给定函数，如果任一项返回 <code>true</code>，则结果为<code>true</code>, 并且迭代结束</td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td>按照字母顺序对数组排序，支持传入指定排序方法的函数作为参数</td>
+</tr>
+<tr>
+<td><code>toString</code></td>
+<td>将数组作为字符串返回</td>
+</tr>
+<tr>
+<td><code>valueOf</code></td>
+<td>和 <code>toString</code>类似，将数组作为字符串返回</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="数组合并"><a href="#数组合并" class="headerlink" title="数组合并"></a>数组合并</h4><ul>
+<li><p>数组的合并非常简单, 使用 concat 即可(也可以直接+进行合并)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组的合并</span></span><br><span class="line"><span class="keyword">var</span> nums1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> nums2 = [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>]</span><br><span class="line"><span class="keyword">var</span> newNums = nums1.<span class="title function_">concat</span>(nums2)</span><br><span class="line"><span class="title function_">alert</span>(newNums) <span class="comment">// 1,2,3,100,200,300</span></span><br><span class="line"></span><br><span class="line">newNums = nums1 + nums2</span><br><span class="line"><span class="title function_">alert</span>(newNums) <span class="comment">// 1,2,3,100,200,300</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h4><ul>
+<li><p>为了方便操作数组, JS 提供了很多迭代器方法, 我们来回顾一下</p>
+</li>
+<li><p>every()方法</p>
+<ul>
+<li>every()方法是将数组中每一个元素传入到一个函数中, 该函数返回 true/false.</li>
+<li>如果函数中每一个元素都返回 true, 那么结果为 true, 有一个为 false, 那么结果为 false</li>
+</ul>
+</li>
+<li><p>every()练习:</p>
+<ul>
+<li>判断一组元素中是否都包含某一个字符</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义数组</span></span><br><span class="line"><span class="keyword">var</span> names = [<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;cb&#x27;</span>, <span class="string">&#x27;mba&#x27;</span>, <span class="string">&#x27;dna&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断数组的元素是否都包含a字符</span></span><br><span class="line"><span class="keyword">var</span> flag = names.<span class="title function_">every</span>(<span class="keyword">function</span> (<span class="params">t</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> t.<span class="title function_">indexOf</span>(<span class="string">&#x27;a&#x27;</span>) != -<span class="number">1</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">alert</span>(flag)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>some()方法</p>
+<ul>
+<li>some()方法是将数组中每一个元素传入到一个函数中, 该函数返回 true/false</li>
+<li>但是和 every 不同的是, 一旦有一次函数返回了 true, 那么迭代就会结束. 并且结果为 true</li>
+</ul>
+</li>
+<li><p>some()练习</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义数组</span></span><br><span class="line"><span class="keyword">var</span> names = [<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;cb&#x27;</span>, <span class="string">&#x27;mba&#x27;</span>, <span class="string">&#x27;dna&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断数组中是否包含有a字符的字符</span></span><br><span class="line"><span class="keyword">var</span> flag = names.<span class="title function_">some</span>(<span class="keyword">function</span> (<span class="params">t</span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(t)</span><br><span class="line">  <span class="keyword">return</span> t.<span class="title function_">indexOf</span>(<span class="string">&#x27;a&#x27;</span>) != -<span class="number">1</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">alert</span>(flag)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>forEach()方法</p>
+<ul>
+<li>forEach()方法仅仅是一种快速迭代数组的方式而已.</li>
+<li>该方法不需要返回值</li>
+</ul>
+</li>
+<li><p>forEach 的使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义数组</span></span><br><span class="line"><span class="keyword">var</span> names = [<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;cb&#x27;</span>, <span class="string">&#x27;mba&#x27;</span>, <span class="string">&#x27;dna&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// forEach的使用</span></span><br><span class="line">names.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">t</span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(t)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>filter()方法</p>
+<ul>
+<li>filter()方法是一种过滤的函数</li>
+<li>首先会遍历数组中每一个元素传入到函数中</li>
+<li>函数的结果返回 true, 那么这个元素会被添加到最新的数组中, 返回 false, 则忽略该元素.</li>
+<li>最终会形成一个新的数组, 该数组就是 filter()方法的返回值</li>
+</ul>
+</li>
+<li><p>filter()的练习:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义数组</span></span><br><span class="line"><span class="keyword">var</span> names = [<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;cb&#x27;</span>, <span class="string">&#x27;mba&#x27;</span>, <span class="string">&#x27;dna&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取names中所有包含&#x27;a&#x27;字符的元素</span></span><br><span class="line"><span class="keyword">var</span> newNames = names.<span class="title function_">filter</span>(<span class="keyword">function</span> (<span class="params">t</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> t.<span class="title function_">indexOf</span>(<span class="string">&#x27;a&#x27;</span>) != -<span class="number">1</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">alert</span>(newNames)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map()方法</p>
+<ul>
+<li>map()方法提供的是一种映射函数.</li>
+<li>首先会遍历数组中每一个元素传入到函数中.</li>
+<li>元素会经过函数中的指令进行各种变换, 生成新的元素, 并且将新的元素返回.</li>
+<li>最终会将返回的所有元素形成一个新的数组, 该数组就是 map()方法的返回值</li>
+</ul>
+</li>
+<li><p>map()练习:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义数组</span></span><br><span class="line"><span class="keyword">var</span> names = [<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;cb&#x27;</span>, <span class="string">&#x27;mba&#x27;</span>, <span class="string">&#x27;dna&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在names中所有的元素后面拼接-abc</span></span><br><span class="line"><span class="keyword">var</span> newNames = names.<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">t</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> t + <span class="string">&#x27;-abc&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">alert</span>(newNames)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="reduce-方法"><a href="#reduce-方法" class="headerlink" title="reduce 方法"></a>reduce 方法</h4><ul>
+<li><p>我们单独拿出 reduce 方法, 因为这个方法相对来说难理解一点</p>
+</li>
+<li><p>首先, 我们来看这个方法需要的参数:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">reduce</span>(callback[, initialValue])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参数</p>
+<ul>
+<li>callback（一个在数组中每一项上调用的函数，接受四个函数：）<ul>
+<li>previousValue（上一次调用回调函数时的返回值，或者初始值）</li>
+<li>currentValue（当前正在处理的数组元素）</li>
+<li>currentIndex（当前正在处理的数组元素下标）</li>
+<li>array（调用 reduce()方法的数组）</li>
+</ul>
+</li>
+<li>initialValue（可选的初始值。作为第一次调用回调函数时传给 previousValue 的值）</li>
+</ul>
+</li>
+<li><p>有些晦涩难懂, 我们直接看例子</p>
+<ul>
+<li>求一个数字中数字的累加和</li>
+</ul>
+</li>
+<li><p>使用 for 实现:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.定义数组</span></span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.for实现累加</span></span><br><span class="line"><span class="keyword">var</span> total = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; numbers.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  total += numbers[i]</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">alert</span>(total) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 forEach 简化 for 循环</p>
+<ul>
+<li>相对于 for 循环, forEach 更符合我们的思维(遍历数组中的元素)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3.使用forEach</span></span><br><span class="line"><span class="keyword">var</span> total = <span class="number">0</span></span><br><span class="line">numbers.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">t</span>) &#123;</span><br><span class="line">  total += t</span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">alert</span>(total)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 reduce 方法实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4.使用reduce方法</span></span><br><span class="line"><span class="keyword">var</span> total = numbers.<span class="title function_">reduce</span>(<span class="keyword">function</span> (<span class="params">pre, cur</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> pre + cur</span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">alert</span>(total)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码解析:</p>
+<ul>
+<li>pre 中每次传入的参数是不固定的, 而是上次执行函数时的结果保存在了 pre 中</li>
+<li>第一次执行时, pre 为 0, cur 为 1</li>
+<li>第二次执行时, pre 为 1 (0+1, 上次函数执行的结果), cur 为 2</li>
+<li>第三次执行时, pre 为 3 (1+2, 上次函数执行的结果), cur 为 3</li>
+<li>第四次执行时, pre 为 6 (3+3, 上次函数执行的结果), cur 为 4</li>
+<li>当 cur 为 4 时, 数组中的元素遍历完了, 就直接将第四次的结果, 作为 reduce 函数的返回值进行返回.</li>
+</ul>
+</li>
+<li><p>似乎和 forEach 比较没有太大的优势呢?</p>
+<ul>
+<li>通过这个代码你会发现, 你不需要在调用函数前先定义一个变量, 只需要一个变量来接收方法最终的参数即可.</li>
+<li>但是这就是优势吗? 不是, 优势在于 reduce 方法有返回值, 而 forEach 没有.</li>
+<li>这算什么优势? 如果 reduce 方法有返回值, 那么 reduce 方法本身就可以作为参数直接传递给另外一个需要 reduce 返回值的作为参数的函数. 而 forEach 中你只能先将每次函数的结果保存在一个变量, 最后再将变量传入到参数中.</li>
+<li>没错, 这就是最近非常流行的函数式编程. 也是为了几乎每个可以使用函数式编程的语言都有 reduce 这个方法的原因.</li>
+<li>关于函数式编程, 不再本次课程的讨论之中, 只是看到了这个函数, 给大家延伸了一下而已.(后面有机会和大家分享函数式编程)</li>
+</ul>
+</li>
+<li><p>initialValue 还需要讲吗?</p>
+<ul>
+<li>其实就是第一次执行 reduce 中的函数时, pre 的值.</li>
+<li>因为默认 pre 第一次执行时为 0.</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined" rel="external nofollow noreferrer">ConstOwn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.juanertu.com/archives/838e5b66.html">https://blog.juanertu.com/archives/838e5b66.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.juanertu.com" target="_blank">你真是一个美好的人类</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E7%BB%84/">数组</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717232609.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/archives/d343d10e.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717232609.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">JavaScript数据结构和算法：栈结构</div></div></a></div><div class="next-post pull-right"><a href="/archives/f36eea83.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718183828.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hexo博客添加emoji表情支持</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/archives/292a04a3.html" title="JavaScript数据结构和算法：单向链表"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717232609.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-12</div><div class="title">JavaScript数据结构和算法：单向链表</div></div></a></div><div><a href="/archives/14862ea.html" title="JavaScript数据结构和算法：队列"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717232609.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-03</div><div class="title">JavaScript数据结构和算法：队列</div></div></a></div><div><a href="/archives/d343d10e.html" title="JavaScript数据结构和算法：栈结构"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717232609.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-28</div><div class="title">JavaScript数据结构和算法：栈结构</div></div></a></div><div><a href="/archives/2f89d13b.html" title="练习题"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200717232609.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-12</div><div class="title">练习题</div></div></a></div><div><a href="/archives/b2cd753e.html" title="ES6标准入门(十)：class类中constructor和name问题"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718185259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-03</div><div class="title">ES6标准入门(十)：class类中constructor和name问题</div></div></a></div><div><a href="/archives/16f8f18e.html" title="ES6标准入门(九)：Proxy"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200718185259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-10-28</div><div class="title">ES6标准入门(九)：Proxy</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ConstOwn</div><div class="author-info__description">能和你一起成长，我荣幸之至。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">82</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/constown"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/constown" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=mvn19Onu9e302vz14vf78-a0_fX3" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://juanertu.com" rel="external nofollow noreferrer" target="_blank" title="我的首页"><i class="fas fa-laptop-code"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=912300601&amp;site=qq&amp;menu=yes" rel="external nofollow noreferrer" target="_blank" title="发送QQ消息"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">暂时不接受友链申请了，如果需要联系我，请不要在博客留言，很少看到，请直接通过上方QQ给我发送临时消息！。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">数组的基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84"><span class="toc-text">为什么使用数组?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E7%BB%84"><span class="toc-text">创建和初始化数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E9%95%BF%E5%BA%A6%E5%92%8C%E9%81%8D%E5%8E%86%E6%95%B0%E7%BB%84"><span class="toc-text">数组长度和遍历数组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C"><span class="toc-text">数组的常见操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-text">添加元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE"><span class="toc-text">任意位置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C"><span class="toc-text">数组的其他操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95"><span class="toc-text">常见方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%90%88%E5%B9%B6"><span class="toc-text">数组合并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95"><span class="toc-text">迭代方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reduce-%E6%96%B9%E6%B3%95"><span class="toc-text">reduce 方法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/archives/91fd1eed.html" title="mac OS 配置前端开发环境"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20210615211906.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mac OS 配置前端开发环境"/></a><div class="content"><a class="title" href="/archives/91fd1eed.html" title="mac OS 配置前端开发环境">mac OS 配置前端开发环境</a><time datetime="2023-06-15T19:02:11.000Z" title="发表于 2023-06-15 19:02:11">2023-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/992bac21.html" title="使用GitHub Actions 实现自动化部署和部署到服务器"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/202202091905708.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用GitHub Actions 实现自动化部署和部署到服务器"/></a><div class="content"><a class="title" href="/archives/992bac21.html" title="使用GitHub Actions 实现自动化部署和部署到服务器">使用GitHub Actions 实现自动化部署和部署到服务器</a><time datetime="2022-02-10T13:02:13.000Z" title="发表于 2022-02-10 13:02:13">2022-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/9ac5350.html" title="img标签访问图片返回403 forbidden的解决方法"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20210720104313.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="img标签访问图片返回403 forbidden的解决方法"/></a><div class="content"><a class="title" href="/archives/9ac5350.html" title="img标签访问图片返回403 forbidden的解决方法">img标签访问图片返回403 forbidden的解决方法</a><time datetime="2021-07-20T10:36:33.000Z" title="发表于 2021-07-20 10:36:33">2021-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/558885cd.html" title="Vue基于html2canvas实现HTML页面生成为图片并下载的功能及清晰度优化"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20201113115021.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue基于html2canvas实现HTML页面生成为图片并下载的功能及清晰度优化"/></a><div class="content"><a class="title" href="/archives/558885cd.html" title="Vue基于html2canvas实现HTML页面生成为图片并下载的功能及清晰度优化">Vue基于html2canvas实现HTML页面生成为图片并下载的功能及清晰度优化</a><time datetime="2020-11-13T11:36:33.000Z" title="发表于 2020-11-13 11:36:33">2020-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/59df034f.html" title="那些你总是要用却又死活记不住的css属性"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20201112094634.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="那些你总是要用却又死活记不住的css属性"/></a><div class="content"><a class="title" href="/archives/59df034f.html" title="那些你总是要用却又死活记不住的css属性">那些你总是要用却又死活记不住的css属性</a><time datetime="2020-11-12T09:36:33.000Z" title="发表于 2020-11-12 09:36:33">2020-11-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023 By ConstOwn</div><div class="footer_custom_text"><span style="color:#999" onclick="window.open('https://beian.miit.gov.cn/#/Integrated/index/')"><a class="footer-a"> 渝ICP备19004608号</a></span> <br /> <span style="color:#999" onclick="window.open('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50023502000331')"><a class="footer-a"><img class="upy" align="absmiddle" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/constown/HexoStaticFile/img/20200831161110.png">渝公网安备50023502000331号</a></span> <br /> <a class="footer-a" onclick="window.open('https:\/\/www.upyun.com/?utm_source=lianmeng&utm_medium=referral')">本网站由 <img class="upy" align="absmiddle" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/upy.png"> 提供CDN加速/云储存服务</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
